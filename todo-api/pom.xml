@@ -112,7 +112,11 @@
         </executions>
       </plugin>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
+	<artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+	  <source>1.8</source>
+	  <target>1.8</target>
+	</configuration>
         <version>${compiler-plugin.version}</version>
       </plugin>
       <plugin>
@@ -151,7 +155,9 @@
                   <goal>integration-test</goal>
                   <goal>verify</goal>
                 </goals>
-                <configuration>
+		<configuration>
+	          <source>1.8</source>
+		  <target>1.8</target>
                   <systemPropertyVariables>
                     <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
                     <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>

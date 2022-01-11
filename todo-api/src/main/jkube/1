@@ -1,0 +1,30 @@
+1. Create an MYSQL database using come-with MYSQL image
+oc new-app --name mysql  -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 -e MYSQL_DATABASE=items -e MYSQL_ROOT-PASSWORD=r00tpa55 mysql:8.0-el8
+
+helm create  todo-list 
+# change values.yaml for image,tag and ports
+# add dependency in Chart.yaml file
+dependencies:
+  - name: mariadb
+    version: 9.3.11
+    repository: https://charts.bitnami.com/bitnami
+helm dependency update
+skopeo inspect docker://docker.io/bitnami/mariadb:10.5.10-debian-10-r0 --creds zerospeedzero:Abcd4321
+#mariadb is opensource of mysql where based on the helm chart of mariadb the chart vaiables are auth.rootPassword, auth.database, auth.username and auth.password
+add deployment.yam for {{-range Values.envs }} vairables and remember the loop .name and .value referenced
+#It is found out the mariadb (mysql opensource version) are deploy with the helm chart via dependencieswith values defined
+#oc import-image would index image with credential!
+#
+#change deployment port to 3000
+#JKube deployment
+mvn -DskipTests clean compile package oc:build oc:resource oc:apply
+#check pom.xml for two part plugin
+<plugin>
+  <groupId>eclispe.org</groupId>
+  <artifect>openshift-plugin</artifect> 
+  <version></version>
+</plugin>
+#The pod has failed environment variables define
+#oc create cm ... command -o to generate the cm.yaml and stored under src/main/jkube directory
+#Define patch spec for deployment.yaml under the same directory using oc explain spec.containers.envFrom. remeber the deployment.yaml starting at spec level
+
